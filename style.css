@@ -1,0 +1,85 @@
+/* ============ PHOTOS DE FOND : modifiez ces 3 lignes ============ */
+:root{
+  --bg-accueil:url("Isabella.jpg");
+  --bg-expos:url("Isabella.jpg");
+  --bg-apropos:url("Isabella.jpg");
+/* ================================================================ */
+  --ink:#fbf6ec; --panel:rgba(18,12,8,.72); --field:#b9b6b2; --fieldtxt:#6f6a64;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box}
+html{background:#120d09;scroll-padding-top:env(safe-area-inset-top,0px)}
+html,body{margin:0;min-height:100%}
+body{position:relative;isolation:isolate;min-height:100vh;overflow-x:hidden;
+  font-family:"EB Garamond",Georgia,"Times New Roman",serif;color:var(--ink);font-size:19px;line-height:1.35}
+
+/* Fond : défile avec la page */
+#bg{position:absolute;top:0;left:0;width:100%;height:100%;z-index:-1;
+  background:var(--bg-accueil) top center/100% auto no-repeat #120d09}
+body[data-page="expositions"] #bg{background:var(--bg-expos) top center/100% auto no-repeat #120d09}
+body[data-page="apropos"] #bg{background:var(--bg-apropos) top center/100% auto no-repeat #120d09}
+
+/* ============ VERSION ORDINATEUR ============ */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;align-items:center;gap:14px;padding:14px 18px}
+.logo{width:40px;height:40px;background:#000;color:var(--ink);display:grid;place-items:center;font-size:20px;text-decoration:none;flex:none}
+.site-title,.burger{display:none}
+nav{display:flex;flex:1;flex-wrap:wrap;align-items:center;gap:4px 22px;background:rgba(0,0,0,.62);border-radius:10px;padding:8px 16px;backdrop-filter:blur(4px)}
+nav a{color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:8px;font-size:20px;padding:2px 0}
+nav a:hover,nav a:focus-visible,nav a[aria-current="page"]{text-decoration:underline;text-underline-offset:5px;outline:none}
+nav .search{font-size:22px}
+
+main{max-width:760px;margin:0 auto;padding:10px 18px 60px}
+.page{display:none}
+.page.active{display:block}
+h1{font-weight:400;text-align:center;font-size:24px;letter-spacing:.02em;margin:34px 0 26px}
+h2{font-weight:400;font-size:28px;margin:0 0 14px}
+.panel{background:var(--panel);padding:22px 24px;margin-top:26px}
+p{margin:0 0 10px}
+
+/* Expositions */
+.expo{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+.expo .txt{grid-column:1;grid-row:1;font-size:24px}
+.expo .a1{grid-column:2;grid-row:1/3}
+.expo .a2{grid-column:1;grid-row:2/4}
+.expo .a3{grid-column:2;grid-row:3}
+.expo figure{margin:0}
+.expo img{display:block;width:100%;height:auto;background:#1d1d1b}
+.expo figcaption{margin-top:8px;font-style:italic;font-size:17px;text-align:center}
+
+/* A propos */
+.info ul{padding:0;margin:0}
+.info li{list-style:none;display:flex;gap:14px;margin-bottom:10px}
+.hours{display:grid;grid-template-columns:auto 1fr;gap:2px 40px}
+label{display:block;margin:14px 0 4px}
+input,textarea{width:100%;max-width:420px;background:var(--field);color:#1b1713;border:0;padding:6px 10px;font:inherit}
+input::placeholder,textarea::placeholder{color:var(--fieldtxt)}
+textarea{max-width:none;height:160px;resize:vertical}
+button.send{margin-top:18px;background:var(--ink);color:#1b1713;border:0;padding:8px 22px;font:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+#ok{display:none;margin-top:12px}
+
+/* ============ VERSION TELEPHONE (écrans de moins de 700px) ============ */
+@media (max-width:700px){
+  body{font-size:17px}
+  header{padding:12px}
+  .site-title{display:block;font-size:18px;letter-spacing:.02em}
+  .burger{display:block;margin-left:auto;background:none;border:0;color:var(--ink);font-size:34px;line-height:1;padding:0 4px;cursor:pointer}
+  nav{display:none;position:absolute;top:100%;left:12px;right:12px;flex:none;flex-direction:column;align-items:flex-start;gap:12px;padding:16px 18px}
+  nav.open{display:flex}
+  nav .search{display:none}
+
+  main{padding:6px 12px 40px}
+  h1{display:none}
+  .panel{padding:16px 18px;margin-top:16px}
+  .intro{background:var(--panel);padding:16px 18px;margin-top:8px}
+
+  .expo{grid-template-columns:1fr;gap:6px}
+  .expo .txt,.expo .a1,.expo .a2,.expo .a3{grid-column:1;grid-row:auto}
+  .expo .txt{font-size:18px}
+  .expo figure{width:80%;margin:14px auto 0}
+  .expo figcaption{text-align:left;font-size:16px}
+
+  .hours{gap:2px 24px}
+}
